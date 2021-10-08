@@ -1,0 +1,154 @@
+
+<style>
+  .button {
+    background-color: rgb(124, 33, 209);
+
+  color: white;
+  padding: 1em 1.5em;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.button:hover {
+  background-color: #ce0606;
+}
+
+.button:active {
+  box-shadow: none;
+  top: 5px;
+               }
+  .tp-container {
+     margin-top: 30px;
+     margin-left: -80px;
+      padding-top: 200px;
+      padding-left: 150px;
+    
+      
+     
+      background: #eee;
+   }
+   .tp-section {
+      padding-top: 80px;
+      padding-left: 20px;
+      display: flex;
+      margin-left: 100px;
+      align-content: center;
+      align-items: center;
+      height: 60px;
+      width:150px;   
+   }
+   .center
+   {
+       text-align: center;
+   }
+  
+
+
+
+
+
+
+   .companyName{
+    font-size: 150%;
+}
+
+.mat-toolbar{
+  height: 7vh;
+}
+
+div {
+    overflow: inherit;
+}
+
+.mat-sidenav-container{
+  background-color: lightskyblue;
+  min-height: 93vh !important;
+}
+
+a{
+    text-decoration: none;
+    font-size: 110%;
+    white-space: normal;
+}
+
+button{
+    font-size: 110%;
+    min-width: min-content;
+}
+
+.example-icon {
+    padding: 0 14px;
+  }
+  
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+
+  .mat-sidenav-content{
+      font-size: 200%;
+      text-align: center;
+  }
+  </style>
+  <br><br>
+
+
+
+  <!-- <mat-sidenav-container class = "tp-container">
+      <mat-sidenav mode = "side" opened>
+         <section class = "tp-section">
+  
+          <span>
+              <a routerLink="/friends" routerLinkActive="active" class="button">Friends </a><br><br>
+  
+              <a routerLink="/groups" routerLinkActive="active" class="button"> Groups</a><br><br>
+          
+              <a routerLink="/history" routerLinkActive="active" class="button">History</a>
+              </span>
+         </section>
+        
+      </mat-sidenav>
+      <mat-sidenav-content></mat-sidenav-content>
+   </mat-sidenav-container>
+  
+  
+ -->
+
+
+   <div> 
+    <mat-toolbar color="primary">
+      <div fxShow="true" fxHide.gt-sm="true">
+        <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+  
+      <a mat-button class="companyName" routerLink="/">
+        <span>ES</span>
+      </a>
+      <span class="example-spacer"></span>
+      <div fxShow="true" fxHide.lt-md="true">
+        <a mat-button routerLink="/side-menu">Home</a>
+       
+
+        <a mat-button class="btn btn-outline-danger" (click)="logout()">Logout</a>
+        <a mat-button routerLink="/start-page">Start page</a>
+        <a mat-button routerLink="/offer">Contact</a>
+        <a mat-button routerLink="/contact">About us</a>
+      </div>
+  
+    </mat-toolbar>
+    <mat-sidenav-container fxFlexFill class="example-container">
+      <mat-sidenav color="primary" #sidenav fxLayout="column" mode="over"  opened="false" fxHide.gt-sm="true">
+        <div fxLayout="column">
+          <a mat-button >Friends</a><br>
+          <a mat-button routerLink="/groups">Groups</a><br>
+          <a mat-button routerLink="/history">History </a>
+          
+        </div>
+      </mat-sidenav>
+      <mat-sidenav-content fxFlexFill>
+        <app-friends></app-friends>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>

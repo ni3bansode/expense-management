@@ -1,0 +1,230 @@
+
+<style>
+   .af{
+   margin-left: 20px;
+   }
+   .scrollbar-measurer {
+    
+    height: 80px;
+    overflow: scroll;
+ width: 50px;
+ border: 5px;
+ }   
+ 
+ 
+ .no-scrollbar-wrap {
+    position: absolute; 
+   margin-top: 400px;
+   margin-left: 100px;
+   align-items: center;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   
+  
+   
+   overflow: hidden;
+ }
+ 
+ .no-scrollbar {
+    position: relative; 
+   overflow-x: hidden;
+  
+   overflow-y: scroll;
+   width: 70%;
+   height: 300px;
+   /* Padding the width of the scrollbar will be added to the right */
+   box-sizing: content-box;
+ }
+ 
+ .back {
+  
+   z-index: -1;
+   width: 10%;
+   height: 10%;
+ }
+ .front{
+   text-align: center;
+   padding-left: 10px;
+ }
+ 
+   </style>
+ 
+ 
+   
+  
+<!-- <app-side-menu></app-side-menu> -->
+   <div class="container">
+  
+
+      
+      <button type="button" class="btn btn-primary af " (click) = "show()"> 
+       
+         Add Expense</button>
+    
+
+
+         <div class="no-scrollbar-wrap">
+            <div class="no-scrollbar">
+              <div class="back">
+              
+              <div class="front" >
+                
+         
+               <div *ngFor="let detail of details | async">
+                  <div class="clickme" (click) = "show1()">
+                  {{detail.firstname}}<br>
+                  Paid By  :{{detail.paidby}}<br>
+                  Rupees :{{detail.rupees}}
+              </div> 
+              </div>
+            </div>
+          </div>
+      
+      
+   </div>
+
+
+   
+</div>
+    
+
+
+    <div [style.display]="showModal ? 'block' : 'none'" class="modal" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" >
+          <h4 class="modal-title" id="myModalLabel">Add Expense</h4>
+        </div>
+        <div class="modal-body" [ngStyle]="{'background' : 'url(./assets/background.jpg)'}">
+                  <form [formGroup]="friendform" (ngSubmit)="onSubmit(friendform.value)">
+                        <div class="row">
+                           <div class="col-sm-6">
+                              <div class="form-group">
+                                   
+                                    <input placeholder="FirstName" type="text" formControlName="firstname" [(ngModel)] = "firstname" class="form-control"  />
+                                    <div *ngIf="submitted" class="invalid-feedback"></div>
+                                        
+                                    </div>
+                                 </div>
+                          
+                           <div class="col-sm-6">
+                              <div class="form-group">
+                              
+                                 <input type="text" placeholder="Email"  formControlName="email" class="form-control" />
+                                 <div *ngIf="submitted " class="invalid-feedback">
+                                   
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-sm-6">
+                                 <div class="form-group">
+                                 
+                                    <input type="text"  placeholder="Description" formControlName="description" class="form-control"  />
+                                    <div *ngIf="submitted " class="invalid-feedback">
+                                      
+                                    </div>
+                                 </div>
+                              </div>
+
+
+                              <div class="col-sm-6">
+                                 <div class="form-group">
+                                   
+                                    <input type="text"  placeholder="₹ 0.00" formControlName="rupees" class="form-control" />
+                                    <div *ngIf="submitted" class="invalid-feedback">
+                                   
+                                      
+                                    </div>
+                                 </div>
+                              </div>
+                           
+
+
+                             
+
+
+                           <div class="col-sm-6">
+                              <div class="form-group">
+                                
+                                 <select class="mdb-select md-form" formControlName="paidby" id="paid" class="form-control" >
+                                    <option value="" disabled selected>Paid By :</option>
+                                    <option value="you">You</option>
+                                    <option value="heorshe">{{firstname}}</option>
+                                  
+                                  </select>
+                                 <div *ngIf="submitted " class="invalid-feedback">
+                                  
+                                   
+                                 </div>
+                              </div>
+                           </div>
+
+
+
+                           <div class="col-sm-6">
+                              <div class="form-group">
+                                
+                                 <select class="mdb-select md-form" formControlName="split"  class="form-control" >
+                                    <option value="" disabled selected>And Split :</option>
+                                    <option value="equally">Equally</option>
+                                    <option value="youowe">You owe {{value}}</option>
+                                    <option value="owesyou">Owes you {{value}}</option>
+                                
+
+                                  </select>
+
+                                 <div *ngIf="submitted" class="invalid-feedback">
+                                 
+                                   
+                                 </div>
+                              </div>
+                           </div>
+
+
+                           
+                           <div class="col-sm-6">
+                              <div class="form-group">
+                                
+                                 <input type="date" name="edate" formControlName="edate" class="form-control" >
+
+                            
+                              </div>
+                           </div>
+                        </div> 
+               <button type="submit" class="btn btn-primary">Add</button>
+                  </form>
+       
+      
+  
+        <div class="modal-footer">
+            <button type="button" class="btn btn-dark" data-dismiss="modal" (click) = "hide()">Close</button>
+        
+        </div>
+      </div>
+    </div>
+
+   
+   </div>
+
+
+
+
+   <ul>
+      <li *ngFor="let todo of details | async">
+       
+        {{ todo}}
+      </li>
+    </ul>
+
+     
+
+<!-- 
+   <ul>
+      <li *ngFor="let h of details.children">
+        {{ h | JSON }}
+      </li>
+    </ul> -->
+
+   

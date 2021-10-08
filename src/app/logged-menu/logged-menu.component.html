@@ -1,0 +1,33 @@
+<nav class="navbar navbar-light">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">Expense Management Application</a>
+    
+    <!-- Show this for logged in users -->
+    <ul *appShowAuthed="true"
+      class="nav pull-xs-right">
+
+      <li class="nav-item">
+        <a class="nav-link"
+          routerLink="/side-menu"
+          routerLinkActive="active" >
+          Home
+        </a>
+      </li>
+
+      
+
+      
+
+      <li class="nav-item">
+        <a class="nav-link"
+          [routerLink]="['/profile', currentUser.username]"
+          routerLinkActive="active">
+          <img [src]="currentUser.image" *ngIf="currentUser.image" class="user-pic" />
+          {{ currentUser.username }}
+        </a>
+      </li>
+
+    </ul>
+
+  </div>
+</nav>
